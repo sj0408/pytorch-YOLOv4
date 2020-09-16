@@ -371,6 +371,33 @@ def plot_boxes(img, boxes, savename=None, class_names=None):
         img.save(savename)
     return img
 
+def get_coords(img, boxes, class_names=None):
+    from collections import defaultdict
+    import numpy as np
+
+    width = img.width
+    height = img.height
+
+    testDict = defaultdict(dict)
+    
+    for i in range(len(boxes)):
+        
+        box = boxes[i]
+        x1 = (box[0] - box[2] / 2.0) * width
+        y1 = (box[1] - box[3] / 2.0) * height
+        x2 = (box[0] + box[2] / 2.0) * width
+        y2 = (box[1] + box[3] / 2.0) * height
+        
+        if len(box) >= 7 and class_names:
+            cls_conf = box[5]
+            cls_id = box[6]
+        
+            print(f'box {i} >> {class_names[cls_id]} >> x1: {x1}, y1: {y1}, class: {class_names[cls_id]}, class confidence: {cls_conf}')
+            testDict[class_names[cls_id]][i] = {'x1': x1, 'y1': y1. 'width': np.abs(x2-x1), 'height': np.abs(y2-y1), 'cls_conf': cls_conf}
+
+    return testDict
+
+
 
 def read_truths(lab_path):
     if not os.path.exists(lab_path):
