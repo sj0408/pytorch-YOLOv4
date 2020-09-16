@@ -462,3 +462,4 @@ if  __name__ == "__main__":
 
     class_names = load_class_names(namesfile)
     plot_boxes(img, boxes, 'predictions.jpg', class_names)
+    get_coords(img, boxes, class_names)
