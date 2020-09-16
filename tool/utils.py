@@ -391,8 +391,9 @@ def get_coords(img, boxes, class_names=None):
         if len(box) >= 7 and class_names:
             cls_conf = box[5]
             cls_id = box[6]
-        
-            print(f'box {i} >> {class_names[cls_id]} >> x1: {x1}, y1: {y1}, class: {class_names[cls_id]}, class confidence: {cls_conf}')
+            print('-------------------------------------------------------------')
+            print(f'box {i} >> {class_names[cls_id]} >> x1: {x1}, y1: {y1}, width: {np.abs(x2-x1)}, height: {np.abs(y2-y1)}, class confidence: {cls_conf}')
+            print('-------------------------------------------------------------')
             testDict[class_names[cls_id]][i] = {'x1': x1, 'y1': y1, 'width': np.abs(x2-x1), 'height': np.abs(y2-y1), 'cls_conf': cls_conf}
 
     return testDict
