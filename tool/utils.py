@@ -371,6 +371,7 @@ def plot_boxes(img, boxes, savename=None, class_names=None):
         img.save(savename)
     return img
 
+
 def get_coords(img, boxes, class_names=None):
     from collections import defaultdict
     import numpy as np
@@ -397,7 +398,6 @@ def get_coords(img, boxes, class_names=None):
             testDict[class_names[cls_id]][i] = {'x1': x1, 'y1': y1, 'width': np.abs(x2-x1), 'height': np.abs(y2-y1), 'cls_conf': cls_conf}
 
     return testDict
-
 
 
 def read_truths(lab_path):
